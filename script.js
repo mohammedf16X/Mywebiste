@@ -287,7 +287,9 @@ function changeLanguage() {
 }
 
 function updateTranslations() {
-  const elements = document.querySelectorAll('[data-ar], [data-en]');
+  const elements = document.querySelectorAll(
+    '[data-ar], [data-en], .main-title, .warning-text, .discord-btn span, .footer p, .brand-name, .page-title, .card-title, .card-description, .version-badge span, .modal-body h3'
+  );
   
   elements.forEach(element => {
     const arText = element.getAttribute('data-ar');
@@ -297,6 +299,11 @@ function updateTranslations() {
       element.textContent = arText;
     } else if (currentLanguage === 'en' && enText) {
       element.textContent = enText;
+    }
+
+    // Special handling for brand name
+    if (element.classList.contains('brand-name')) {
+      element.textContent = currentLanguage === 'ar' ? '© دحمي' : '© D7ME';
     }
   });
   
